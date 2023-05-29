@@ -1,138 +1,53 @@
 import pyautogui
 import time
+from multiprocessing import Pool, cpu_count
+import gc
+import keyboard 
 
 # Define the image filenames to search for
-invite = 'confirm.png'
-join = 'join.png'
-ready = 'ready.png'
-ok = 'ok.png'
-ok1='ok1.png'
-ok2='ok2.png'
-mpOK = 'mpOK.png'
-blacklist = 'blacklist.png'
-achievement = 'achievement.png'
-cancel = 'cancel.png'
-close = 'close.png'
-cancel2 = 'close2.png'
+images_to_search = ['confirm.png', 'join.png', 'ready.png', 'ok.png', 'ok1.png', 'ok2.png', 
+                    'mpOK.png', 'blacklist.png', 'achievement.png', 'cancel.png', 'close.png', 
+                    'close2.png',]
 
 # Define the action to perform when the image is found
 action = 'click'
 click_coords = (100, 200)  # Coordinates for mouse click
 
-while True:        
-    # take a screenshot
-    pyautogui.screenshot('screenshot.png')
-    
+pause = True  # Control variable
+
+def find_and_click(image):
     # Search for the image on the screen
-    image = pyautogui.locateOnScreen(invite)
-    if image is not None:
-        print('confirm')
+    loc = pyautogui.locateOnScreen(image, confidence=0.8)
+    if loc is not None:
+        print(f'{image} found')
         if action == 'click':
             # Get the center coordinates of the image
-            image_center_x, image_center_y = pyautogui.center(image)
+            center = pyautogui.center(loc)
             # Perform the click action on the center coordinates
-            pyautogui.click(image_center_x, image_center_y)
+            pyautogui.click(center)
+    else:
+        print(f'{image} not found')
+    gc.collect()
 
-    # check chose black list
-    image = pyautogui.locateOnScreen(blacklist)
-    if image is not None:
-        print('black list')
-        if action == 'click':
-            image_center_x, image_center_y = pyautogui.center(image)
-            pyautogui.click(image_center_x, image_center_y)
+def start_detection(e):
+    global pause
+    pause = False
+    print("Detection started")
 
-    # check for cancel button
-    image = pyautogui.locateOnScreen(cancel)
-    if image is not None:
-        print('cancel')
-        if action == 'click':
-            image_center_x, image_center_y = pyautogui.center(image)
-            pyautogui.click(image_center_x, image_center_y)
-    
-    # check for cancel2 button
-    image = pyautogui.locateOnScreen(cancel2)
-    if image is not None:
-        print('cancel2')
-        if action == 'click':
-            image_center_x, image_center_y = pyautogui.center(image)
-            pyautogui.click(image_center_x, image_center_y)
+def stop_detection(e):
+    global pause
+    pause = True
+    print("Detection paused")
 
-    # check for ready button
-    image = pyautogui.locateOnScreen(ready)
-    if image is not None:
-        print('ready')
-        if action == 'click':
-            image_center_x, image_center_y = pyautogui.center(image)
-            pyautogui.click(image_center_x, image_center_y)
+if __name__ == "__main__":
+    # Register hotkeys
+    keyboard.on_press_key("f10", start_detection)
+    keyboard.on_press_key("f12", stop_detection)
 
-    # check for join button
-    image = pyautogui.locateOnScreen(join)
-    if image is not None:
-        print('join')
-        if action == 'click':
-            image_center_x, image_center_y = pyautogui.center(image)
-            pyautogui.click(image_center_x, image_center_y)
+    # Using multiprocessing pool to parallelize the process
+    pool = Pool(processes=cpu_count())
 
-    # Search for the image on the screen
-    image = pyautogui.locateOnScreen(invite)
-    if image is not None:
-        print('confirm')
-        if action == 'click':
-            # Get the center coordinates of the image
-            image_center_x, image_center_y = pyautogui.center(image)
-            # Perform the click action on the center coordinates
-            pyautogui.click(image_center_x, image_center_y)
-
-    # check for ok button
-    image = pyautogui.locateOnScreen(ok)
-    if image is not None:
-        print('ok')
-        if action == 'click':
-            image_center_x, image_center_y = pyautogui.center(image)
-            pyautogui.click(image_center_x, image_center_y)
-
-    # check for ok1 button
-    image = pyautogui.locateOnScreen(ok1)
-    if image is not None:
-        print('ok1')
-        if action == 'click':
-            image_center_x, image_center_y = pyautogui.center(image)
-            pyautogui.click(image_center_x, image_center_y)
-
-    # check for ok2 button
-    image = pyautogui.locateOnScreen(ok2)
-    if image is not None:
-        print('ok2')
-        if action == 'click':
-            image_center_x, image_center_y = pyautogui.center(image)
-            pyautogui.click(image_center_x, image_center_y)
-
-    # check for mpOK button
-    image = pyautogui.locateOnScreen(mpOK)
-    if image is not None:
-        print('mpOK')
-        if action == 'click':
-            image_center_x, image_center_y = pyautogui.center(image)
-            pyautogui.click(image_center_x, image_center_y)
-
-    # check for achievement
-    image = pyautogui.locateOnScreen(achievement)
-    if image is not None:
-        print('achievement')
-        if action == 'click':
-            image_center_x, image_center_y = pyautogui.center(image)
-            pyautogui.click(image_center_x, image_center_y)
-
-    # check for close button
-    image = pyautogui.locateOnScreen(close)
-    if image is not None:
-        print('close')
-        if action == 'click':
-            image_center_x, image_center_y = pyautogui.center(image)
-            pyautogui.click(image_center_x, image_center_y)
-
-
-    if image is None:
-        print('not found')
-
-
+    while True:
+        if not pause:
+            pool.map(find_and_click, images_to_search)
+        time.sleep(0.1)  # This prevents your while loop from hogging all the CPU power
