@@ -7,7 +7,7 @@ import keyboard
 # Define the image filenames to search for
 images_to_search = ['confirm.png', 'join.png', 'ready.png', 'ok.png', 'ok1.png', 'ok2.png', 
                     'mpOK.png', 'blacklist.png', 'achievement.png', 'cancel.png', 'close.png', 
-                    'close2.png',]
+                    'close2.png','levelup.png']
 
 # Define the action to perform when the image is found
 action = 'click'
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     keyboard.on_press_key("f12", stop_detection)
 
     # Using multiprocessing pool to parallelize the process
-    pool = Pool(processes=cpu_count())
+    pool = Pool(processes=cpu_count()//2)
 
     while True:
         if not pause:
