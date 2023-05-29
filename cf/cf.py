@@ -11,6 +11,7 @@ ok2='ok2.png'
 mpOK = 'mpOK.png'
 blacklist = 'blacklist.png'
 achievement = 'achievement.png'
+cancel = 'cancel.png'
 
 # Define the action to perform when the image is found
 action = 'click'
@@ -31,7 +32,7 @@ while True:
             image_center_x, image_center_y = pyautogui.center(image)
             # Perform the click action on the center coordinates
             pyautogui.click(image_center_x, image_center_y)
-            time.sleep(5)
+            time.sleep(10)
 
             
     # check chose black list
@@ -41,7 +42,7 @@ while True:
         if action == 'click':
             image_center_x, image_center_y = pyautogui.center(image)
             pyautogui.click(image_center_x, image_center_y)
-            time.sleep(1)
+            time.sleep(2)
 
 
 
@@ -52,7 +53,6 @@ while True:
         if action == 'click':
             image_center_x, image_center_y = pyautogui.center(image)
             pyautogui.click(image_center_x, image_center_y)
-            time.sleep(1)
     
     # check for ready button
     image = pyautogui.locateOnScreen(ready)
@@ -61,8 +61,15 @@ while True:
         if action == 'click':
             image_center_x, image_center_y = pyautogui.center(image)
             pyautogui.click(image_center_x, image_center_y)
-            time.sleep(1)
     
+    # check for cancel button
+    image = pyautogui.locateOnScreen(cancel)
+    if image is not None:
+        print('cancel')
+        if action == 'click':
+            image_center_x, image_center_y = pyautogui.center(image)
+            pyautogui.click(image_center_x, image_center_y)
+
     # check for ok button
     image = pyautogui.locateOnScreen(ok)
     if image is not None:
@@ -70,7 +77,6 @@ while True:
         if action == 'click':
             image_center_x, image_center_y = pyautogui.center(image)
             pyautogui.click(image_center_x, image_center_y)
-            time.sleep(1)
 
     # check for ok1 button
     image = pyautogui.locateOnScreen(ok1)
@@ -79,7 +85,6 @@ while True:
         if action == 'click':
             image_center_x, image_center_y = pyautogui.center(image)
             pyautogui.click(image_center_x, image_center_y)
-            time.sleep(1)
 
     # check for ok2 button
     image = pyautogui.locateOnScreen(ok2)
@@ -88,7 +93,6 @@ while True:
         if action == 'click':
             image_center_x, image_center_y = pyautogui.center(image)
             pyautogui.click(image_center_x, image_center_y)
-            time.sleep(1)
 
     # check for mpOK button
     image = pyautogui.locateOnScreen(mpOK)
@@ -97,7 +101,6 @@ while True:
         if action == 'click':
             image_center_x, image_center_y = pyautogui.center(image)
             pyautogui.click(image_center_x, image_center_y)
-            time.sleep(1)
 
     # check for achievement
     image = pyautogui.locateOnScreen(achievement)
@@ -106,7 +109,8 @@ while True:
         if action == 'click':
             image_center_x, image_center_y = pyautogui.center(image)
             pyautogui.click(image_center_x, image_center_y)
-            time.sleep(1)
+
+
 
     # If no image is found, meaning in-game, then send 's+a' to keep the game alive
     if image is None:
