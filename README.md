@@ -13,6 +13,6 @@ Resolution 1280*720, boarderless window model, python 4.7.0 +
         python cf.py
  
 # Functions: #
-1. auto ready
-2. change side
-3. bypass buttons
+1. Auto ready
+2. Change side to bl
+3. Bypass buttons
