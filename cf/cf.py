@@ -24,7 +24,8 @@ def find_and_click(image):
             # Get the center coordinates of the image
             center = pyautogui.center(loc)
             # Perform the click action on the center coordinates
-            pyautogui.click(center)
+            pyautogui.click(center) # click once
+            pyautogui.click(center) # click twice
     else:
         print(f'{image} not found')
     gc.collect()
