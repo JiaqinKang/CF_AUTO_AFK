@@ -46,7 +46,10 @@ if __name__ == "__main__":
     keyboard.on_press_key("f12", stop_detection)
 
     # Using multiprocessing pool to parallelize the process
-    pool = Pool(processes=cpu_count()//2)
+    if cpu_count() != 1:
+      pool = Pool(processes=cpu_count()//2)
+    else:
+      pool = Pool(processes=cpu_count())
 
     while True:
         if not pause:
