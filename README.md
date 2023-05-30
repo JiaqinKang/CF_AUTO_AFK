@@ -2,7 +2,9 @@
 Resolution 1280*720, boarderless window model, python 4.7.0 +
 
 libary: pip install opencv-python
+
         pip install keyboard
+        
         pip install pyautogui
         
 # Run #
