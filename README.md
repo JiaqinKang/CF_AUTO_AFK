@@ -5,6 +5,9 @@ libary: pip install opencv-python
         pip install keyboard
         pip install pyautogui
         
+# Run #
+python cf.py
+ 
 1. auto ready
 2. change side
 3. bypass buttons
