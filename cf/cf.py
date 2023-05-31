@@ -6,8 +6,8 @@ import keyboard
 
 # Define the image filenames to search for
 images_to_search = ['confirm.png', 'join.png', 'ready.png', 'ok.png', 'ok1.png', 'ok2.png', 
-                    'mpOK.png', 'blacklist.png', 'achievement.png', 'cancel.png', 'close.png', 
-                    'close2.png','levelup.png']
+                    'mpOK.png', 'blacklist.png', 'achievement.png',  'close.png', 
+                    'close2.png','levelup.png','runaway.png']
 
 # Define the action to perform when the image is found
 action = 'click'
@@ -25,7 +25,6 @@ def find_and_click(image):
             center = pyautogui.center(loc)
             # Perform the click action on the center coordinates
             pyautogui.click(center) # click once
-            pyautogui.click(center) # click twice
     else:
         print(f'{image} not found')
     gc.collect()
