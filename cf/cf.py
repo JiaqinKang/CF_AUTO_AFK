@@ -5,9 +5,15 @@ import gc
 import keyboard 
 
 # Define the image filenames to search for
-images_to_search = ['confirm.png', 'join.png', 'ready.png', 'ok.png', 'ok1.png', 'ok2.png', 
-                    'mpOK.png', 'blacklist.png', 'achievement.png',  'close.png', 
-                    'close2.png','levelup.png','runaway.png']
+images_to_search = [ 
+                    # 'start.png',
+                    'blacklist.png',
+                    'wrongpos.png', 'wrongpos2.png','confirm.png', 
+                    'join.png','ready.png', 'ok.png', 
+                    'ok1.png', 'ok2.png', 'mpOK.png',  
+                    'achievement.png',  'close.png', 
+                    'close2.png','levelup.png','runaway.png',
+                    'error.png','lock.png']
 
 # Define the action to perform when the image is found
 action = 'click'
@@ -17,16 +23,61 @@ pause = True  # Control variable
 
 def find_and_click(image):
     # Search for the image on the screen
-    loc = pyautogui.locateOnScreen(image, confidence=0.8)
+    loc = pyautogui.locateOnScreen(image, confidence=0.75)
     if loc is not None:
         print(f'{image} found')
         if action == 'click':
+            
             # Get the center coordinates of the image
             center = pyautogui.center(loc)
-            # Perform the click action on the center coordinates
-            pyautogui.click(center) # click once
-    else:
-        print(f'{image} not found')
+            if image == 'blacklist.png':
+                pyautogui.click(center)  # click
+                pyautogui.click(center)  # twice
+                time.sleep(1)
+
+            # if wrong position
+            elif image == 'wrongpos.png' or image == 'wrongpos2.png':
+                print("Wrong position found")
+                keyboard.press('esc')
+                keyboard.release('esc')
+                time.sleep(1)
+                keyboard.press('enter')
+                keyboard.release('enter')
+                time.sleep(1)
+                keyboard.press('enter')
+                keyboard.release('enter')
+                time.sleep(10)
+                # continue to next image
+                return
+                
+            # Check if the image is 'error.png'
+            elif image == 'error.png':
+                print("Error found")
+                keyboard.press('esc')
+                keyboard.release('esc')
+                time.sleep(1)
+                keyboard.press('enter')
+                keyboard.release('enter')
+                time.sleep(1)
+                keyboard.press('enter')
+                keyboard.release('enter')
+                time.sleep(10)
+                # continue to next image
+                return
+
+            elif image == 'lock.png' and image != 'wrongpos.png' and image != 'wrongpos2.png':
+                print("Lock found, mountain mode")
+                keyboard.press('f2')
+                keyboard.release('f2')
+                # sleep for 170sec
+                time.sleep(170)
+                keyboard.press('f12')
+                keyboard.release('f12')
+                print("Lock released")
+            
+            else:
+                # Perform the click action on the center coordinates
+                pyautogui.click(center)  # click once
     gc.collect()
 
 def start_detection(e):
@@ -44,11 +95,8 @@ if __name__ == "__main__":
     keyboard.on_press_key("f10", start_detection)
     keyboard.on_press_key("f12", stop_detection)
 
-    # Using multiprocessing pool to parallelize the process
-    if cpu_count() != 1:
-      pool = Pool(processes=cpu_count()//2)
-    else:
-      pool = Pool(processes=cpu_count())
+    # Start the multiprocessing pool
+    pool = Pool(processes=1)
 
     while True:
         if not pause:
