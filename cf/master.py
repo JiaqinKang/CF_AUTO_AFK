@@ -23,7 +23,7 @@ pause = True  # Control variable
 
 def find_and_click(image):
     # Search for the image on the screen
-    loc = pyautogui.locateOnScreen(image, confidence=0.73)
+    loc = pyautogui.locateOnScreen(image, confidence=0.75)
     if loc is not None:
         print(f'{image} found')
         if action == 'click':
@@ -48,7 +48,7 @@ def find_and_click(image):
                 time.sleep(1)
                 keyboard.press('enter')
                 keyboard.release('enter')
-                time.sleep(10)
+                time.sleep(15)
                 return
                 
             # Check if the image is 'error.png'
@@ -63,7 +63,7 @@ def find_and_click(image):
                 time.sleep(1)
                 keyboard.press('enter')
                 keyboard.release('enter')
-                time.sleep(10)
+                time.sleep(15)
                 return
 
             elif image == 'lock.png' and image != 'wrongpos.png' and image != 'wrongpos2.png':

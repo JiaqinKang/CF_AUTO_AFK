@@ -10,7 +10,7 @@ RunOnce=1
 EnableWindow=
 MacroID=3828b33e-f433-4325-bf73-6e53f122e138
 Description=chicken
-Enable=0
+Enable=1
 AutoRun=0
 [Repeat]
 Type=1
@@ -29,3 +29,5 @@ KeyUp "S", 1
 KeyDown "A", 1
 Delay 250
 KeyUp "A", 1
+KeyPress "W", 1
+KeyPress "S", 1

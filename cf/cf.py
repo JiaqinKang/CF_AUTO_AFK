@@ -8,7 +8,7 @@ import keyboard
 images_to_search = [ 
                     'blacklist.png',
                     'wrongpos.png', 'wrongpos2.png','confirm.png', 
-                    'runaway.png','cancel.png','cancel2.png',
+                    'runaway.png','cancel2.png',
                     'join.png','ready.png', 'ok.png', 
                     'ok1.png', 'ok2.png', 'mpOK.png',  
                     'achievement.png',  'close.png', 
@@ -47,13 +47,12 @@ def find_and_click(image):
                 time.sleep(1)
                 keyboard.press('enter')
                 keyboard.release('enter')
-                time.sleep(10)
+                time.sleep(15)
                 return
             
             else:
                 # Perform the click action on the center coordinates
                 pyautogui.click(center)  # click once
-                time.sleep(1)
     gc.collect()
 
 def start_detection(e):
