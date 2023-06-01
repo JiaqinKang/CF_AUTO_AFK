@@ -74,7 +74,7 @@ def find_and_click(image):
                 keyboard.press('f2')
                 keyboard.release('f2')
                 # sleep for 170sec
-                time.sleep(170)
+                time.sleep(180)
                 keyboard.press('f3')
                 keyboard.release('f3')
                 print("Lock released")
