@@ -10,7 +10,7 @@ RunOnce=1
 EnableWindow=
 MacroID=3828b33e-f433-4325-bf73-6e53f122e138
 Description=chicken
-Enable=1
+Enable=0
 AutoRun=0
 [Repeat]
 Type=1

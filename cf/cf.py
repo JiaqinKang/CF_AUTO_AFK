@@ -7,7 +7,7 @@ import keyboard
 # Define the image filenames to search for
 images_to_search = [ 
                     'blacklist.png',
-                    'wrongpos.png', 'wrongpos2.png','confirm.png', 
+                    'confirm.png', 
                     'runaway.png','cancel2.png',
                     'join.png','ready.png', 'ok.png', 
                     'ok1.png', 'ok2.png', 'mpOK.png',  
