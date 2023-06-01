@@ -29,5 +29,3 @@ KeyUp "S", 1
 KeyDown "A", 1
 Delay 250
 KeyUp "A", 1
-KeyPress "W", 1
-KeyPress "S", 1
