@@ -70,7 +70,7 @@ def find_and_click(image):
             elif image == 'lock.png' and image != 'wrongpos.png' and image != 'wrongpos2.png':
                 print("Lock found, mountain mode")
                 # use window api to move the mouse up 60 pixels
-                ctypes.windll.user32.mouse_event(0x0001, 0, -60, 0, 0)
+                ctypes.windll.user32.mouse_event(0x0001, 0, -150, 0, 0)
                 keyboard.press('f2')
                 keyboard.release('f2')
                 # sleep for 170sec
