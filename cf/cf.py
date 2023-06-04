@@ -40,7 +40,8 @@ def run_cf_script():
         'close.png',
         'close2.png',
         'levelup.png',
-        'error.png'
+        'error.png',
+        'x.png',
     ]
 
     # Define the action to perform when the image is found
@@ -48,7 +49,7 @@ def run_cf_script():
 
     def find_and_click(image):
         # Search for the image on the screen
-        loc = pyautogui.locateOnScreen(image, confidence=0.75)
+        loc = pyautogui.locateOnScreen(image, confidence=0.70)
         if loc is not None:
             # print(f'{image} found')
             if action == 'click':
