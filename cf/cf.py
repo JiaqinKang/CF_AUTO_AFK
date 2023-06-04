@@ -49,7 +49,7 @@ def run_cf_script():
 
     def find_and_click(image):
         # Search for the image on the screen
-        loc = pyautogui.locateOnScreen(image, confidence=0.70)
+        loc = pyautogui.locateOnScreen(image, confidence=0.725)
         if loc is not None:
             # print(f'{image} found')
             if action == 'click':
