@@ -1,3 +1,3 @@
 @echo off
-python master.py
+python cf.py
 pause
