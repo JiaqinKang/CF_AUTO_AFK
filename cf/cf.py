@@ -41,7 +41,7 @@ def run_cf_script():
         'close2.png',
         'levelup.png',
         'error.png',
-        'x.png',
+        'x.jpg',
     ]
 
     # Define the action to perform when the image is found
