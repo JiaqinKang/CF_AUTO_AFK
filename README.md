@@ -1,7 +1,7 @@
 # CF_AUTO_AFK
 Resolution 1280*720, boarderless window model
 
-# libary: python 4.7.0 +
+# libary: python 3.7.0 +
         
         pip install opencv-python
 
